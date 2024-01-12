@@ -14,28 +14,43 @@ public class Array {
         this.objects = new Object[size];
     }
 
-    public boolean add(Object obj){
-        if (size == capacity){
+    public boolean add(Object obj) {
+        if (size == capacity) {
             System.out.println("数组已满");
             return false;
         }
         objects[size++] = obj;
         return true;
     }
-    public boolean add(int index,Object object){
-        if (size == capacity){
+
+    public boolean add(int index, Object object) {
+        if (size == capacity) {
             System.out.println("数组已满");
             return false;
         }
-        if (index< 0 || index > size){
+        if (index < 0 || index >= size) {
             System.out.println("插入位置不合法");
             return false;
         }
         //从尾部开始循环移动数组位置
-        for (int i=size;i> index;i--){
-            objects[i] = objects[i-1];
+        for (int i = size; i > index; i--) {
+            objects[i] = objects[i - 1];
         }
-        objects[index] =object;
+        size++;
+        objects[index] = object;
+        return true;
+    }
+
+    public boolean delete(int index) {
+        if (index < 0 || index >= size) {
+            System.out.println("删除位置不合法");
+            return false;
+        }
+        for (int i = index + 1; i < size; i++) {
+            objects[i - 1] = objects[i];
+        }
+        --size;
+        objects[size] = null;
         return true;
     }
 
@@ -49,10 +64,20 @@ public class Array {
     }
 
     public static void main(String[] args) {
-        Array array = new Array(10);
+        Array array = new Array(5);
         array.add(1);
         array.add(2);
-        array.add(1,12);
+        array.add(3);
+        array.add(4);
+        array.add(1, 12);
+        System.out.println(array);
+        array.delete(3);
+        array.delete(array.size-1);
+        array.delete(array.size-1);
+        array.delete(array.size-1);
+        array.delete(array.size-1);
+        array.delete(array.size-1);
+
         System.out.println(array);
     }
 }
