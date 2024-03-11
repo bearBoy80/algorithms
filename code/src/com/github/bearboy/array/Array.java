@@ -2,6 +2,9 @@ package com.github.bearboy.array;
 
 import java.util.Arrays;
 
+/**
+ * 自定义实现数组相关功能
+ */
 public class Array {
     private int capacity;
 
